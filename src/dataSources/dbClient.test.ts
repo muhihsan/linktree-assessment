@@ -43,17 +43,15 @@ describe("dynamnoDbClient", () => {
       const userId = uuid();
 
       const link: Link = {
-        id: uuid(),
         userId,
         name: "testing",
         link: "https://testing.com",
-        createdDate: new Date().toISOString(),
-        updatedDate: new Date().toISOString(),
       } as Link;
 
       await dbClient.postLink(link);
 
-      expect(linksDatabase).toContain(link);
+      // TODO: Test if createdDate, updatedDate and id is created
+      expect(linksDatabase[0]).toEqual(expect.objectContaining(link));
     });
   });
 });

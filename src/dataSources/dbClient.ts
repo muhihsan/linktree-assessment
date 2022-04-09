@@ -16,9 +16,14 @@ export const createDbClient: DataSource = (config) => {
         linksDatabase.filter((link) => link.userId === userId)
       );
     },
-    postLink: async (link: Link) => {
+    postLink: async (link: Pick<Link, "userId" | "name" | "link">) => {
       // TODO: store to actual Database
-      linksDatabase.push(link);
+      linksDatabase.push({
+        ...link,
+        id: uuid(),
+        createdDate: new Date().toISOString(),
+        updatedDate: new Date().toISOString(),
+      });
     },
   };
 };
