@@ -6,8 +6,8 @@ describe("postLinkValidator", () => {
     it("should return error", () => {
       const request: PostLinkRequest = {
         title: "",
-        linkType: "classic-link",
-        link: "https://testing.com",
+        type: "classic-link",
+        url: "https://testing.com",
       };
 
       const result = validateRequest(request);
@@ -23,8 +23,8 @@ describe("postLinkValidator", () => {
       const request: PostLinkRequest = {
         title:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-        linkType: "classic-link",
-        link: "https://testing.com",
+        type: "classic-link",
+        url: "https://testing.com",
       };
 
       const result = validateRequest(request);
@@ -35,12 +35,12 @@ describe("postLinkValidator", () => {
     });
   });
 
-  describe("when linkType is not recognised", () => {
+  describe("when type is not recognised", () => {
     it("should return error", () => {
       const request: any = {
         title: "Test",
-        linkType: "random",
-        link: "https://testing.com",
+        type: "random",
+        url: "https://testing.com",
       };
 
       const result = validateRequest(request);
@@ -51,14 +51,14 @@ describe("postLinkValidator", () => {
     it("should return error", () => {
       const request: PostLinkRequest = {
         title: "Test",
-        linkType: "classic-link",
-        link: "random",
+        type: "classic-link",
+        url: "random",
       };
 
       const result = validateRequest(request);
 
       expect(result.error).toEqual(
-        'instance.link does not conform to the "uri" format'
+        'instance.url does not conform to the "uri" format'
       );
     });
   });
@@ -67,8 +67,8 @@ describe("postLinkValidator", () => {
     it("should return error null", () => {
       const request: PostLinkRequest = {
         title: "Test",
-        linkType: "classic-link",
-        link: "https://testing.com",
+        type: "classic-link",
+        url: "https://testing.com",
       };
 
       const result = validateRequest(request);

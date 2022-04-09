@@ -21,8 +21,8 @@ describe("postLinkHandler", () => {
     const userId = uuid();
     const body: PostLinkRequest = {
       title: "testing",
-      link: "https://testing.com",
-      linkType: "classic-link",
+      url: "https://testing.com",
+      type: "classic-link",
     };
 
     let result: Response;

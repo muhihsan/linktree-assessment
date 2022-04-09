@@ -18,8 +18,8 @@ describe("dynamnoDbClient", () => {
         id: uuid(),
         userId,
         title: "first link",
-        link: "https://testing.com",
-        linkType: "classic-link",
+        url: "https://testing.com",
+        type: "classic-link",
         createdDate: new Date().toISOString(),
         updatedDate: new Date().toISOString(),
       };
@@ -28,8 +28,8 @@ describe("dynamnoDbClient", () => {
         id: uuid(),
         userId: uuid(),
         title: "second link",
-        link: "https://testing.com",
-        linkType: "classic-link",
+        url: "https://testing.com",
+        type: "classic-link",
         createdDate: new Date().toISOString(),
         updatedDate: new Date().toISOString(),
       });
@@ -47,7 +47,7 @@ describe("dynamnoDbClient", () => {
       const link: Link = {
         userId,
         title: "testing",
-        link: "https://testing.com",
+        url: "https://testing.com",
       } as Link;
 
       await dbClient.postLink(link);

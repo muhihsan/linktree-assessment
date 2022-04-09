@@ -14,14 +14,19 @@ export interface State {
   dataSources: DataSources;
 }
 
-export type LinkTypes = "classic-link" | "music-style" | "shows-link";
+export const AcceptedLinkTypes = [
+  "classic-link",
+  "music-style",
+  "shows-link",
+] as const;
+export type LinkTypes = typeof AcceptedLinkTypes[number];
 
 export interface Link {
   id: string;
   userId: string;
-  linkType: LinkTypes;
+  type: LinkTypes;
   title: string;
-  link: string;
+  url: string;
   createdDate: string;
   updatedDate: string;
 }
