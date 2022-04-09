@@ -7,10 +7,10 @@ describe("dynamnoDbClient", () => {
   const dbClient = createDbClient(mockConfig);
 
   describe("getLinks", () => {
-    it("should return links for user", () => {
+    it("should return links for user", async () => {
       const userId = uuid();
 
-      const results = dbClient.getLinks(userId);
+      const results = await dbClient.getLinks(userId);
 
       expect(results[0].userId).toEqual(userId);
     });

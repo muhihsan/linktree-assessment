@@ -2,14 +2,14 @@ import { v4 as uuid } from "uuid";
 import { Config, Link } from "../types";
 
 export type DataSource = (config: Config) => {
-  getLinks: (userId: string) => Array<Link>;
+  getLinks: (userId: string) => Promise<Array<Link>>;
 };
 
 export const createDbClient: DataSource = (config) => {
   return {
     getLinks: (userId: string) => {
       // TODO: Get from actual DynamoDB
-      return [
+      return Promise.resolve([
         {
           id: uuid(),
           userId,
@@ -18,7 +18,7 @@ export const createDbClient: DataSource = (config) => {
           createdDate: new Date().toISOString(),
           updatedDate: new Date().toISOString(),
         } as Link,
-      ];
+      ]);
     },
   };
 };
