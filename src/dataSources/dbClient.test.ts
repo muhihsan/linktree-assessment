@@ -14,11 +14,12 @@ describe("dynamnoDbClient", () => {
   describe("getLinks", () => {
     it("should return links for user", async () => {
       const userId = uuid();
-      const expectedLink = {
+      const expectedLink: Link = {
         id: uuid(),
         userId,
         name: "first link",
         link: "https://testing.com",
+        linkType: "classic-link",
         createdDate: new Date().toISOString(),
         updatedDate: new Date().toISOString(),
       };
@@ -28,6 +29,7 @@ describe("dynamnoDbClient", () => {
         userId: uuid(),
         name: "second link",
         link: "https://testing.com",
+        linkType: "classic-link",
         createdDate: new Date().toISOString(),
         updatedDate: new Date().toISOString(),
       });
