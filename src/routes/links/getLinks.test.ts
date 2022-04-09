@@ -2,6 +2,7 @@ import { v4 as uuid } from "uuid";
 import { linksRouter } from ".";
 import createDataSources from "../../dataSources";
 import { agentFromRouter } from "../../../testing/server";
+import { Response } from "supertest";
 
 jest.mock("../../dataSources");
 
@@ -13,15 +14,24 @@ describe("getLinksHandler", () => {
     (createDataSources as jest.Mock).mockReturnValue({
       dbClient: { getLinks: mockGetLinks },
     });
-
-    mockGetLinks.mockResolvedValue("Awesome");
+    mockGetLinks.mockResolvedValue({ link: "Awesome" });
   });
 
   describe("when request is valid", () => {
-    it("should return links on body", async () => {
-      const userId = uuid();
+    const userId = uuid();
 
-      await agent.get(`/users/${userId}/links`).expect(200, "Awesome");
+    let result: Response;
+
+    beforeAll(async () => {
+      result = await agent.get(`/users/${userId}/links`).send();
+    });
+
+    it("should return 200", () => {
+      expect(result.status).toEqual(200);
+    });
+
+    it("should return links on body", async () => {
+      expect(result.body).toEqual({ link: "Awesome" });
     });
   });
 });

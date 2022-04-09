@@ -11,4 +11,6 @@ export const postLinkHandler: Middleware = async (ctx: Context) => {
   const body = ctx.request.body;
 
   await dbClient.postLink({ ...body, userId });
+
+  ctx.status = 201;
 };
