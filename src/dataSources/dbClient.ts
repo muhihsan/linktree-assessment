@@ -1,9 +1,9 @@
 import { v4 as uuid } from "uuid";
-import { Config, Link } from "../types";
+import { Config, PostLinkRequest, Link } from "../types";
 
 export type DataSource = (config: Config) => {
   getLinks: (userId: string) => Promise<Link[]>;
-  postLink: (link: Link) => Promise<void>;
+  postLink: (link: PostLinkRequest & { userId: string }) => Promise<void>;
 };
 
 export const linksDatabase: Link[] = [];
@@ -16,9 +16,7 @@ export const createDbClient: DataSource = (config) => {
         linksDatabase.filter((link) => link.userId === userId)
       );
     },
-    postLink: async (
-      link: Pick<Link, "userId" | "linkType" | "name" | "link">
-    ) => {
+    postLink: async (link: PostLinkRequest & { userId: string }) => {
       // TODO: store to actual Database
       linksDatabase.push({
         ...link,

@@ -17,7 +17,7 @@ describe("dynamnoDbClient", () => {
       const expectedLink: Link = {
         id: uuid(),
         userId,
-        name: "first link",
+        title: "first link",
         link: "https://testing.com",
         linkType: "classic-link",
         createdDate: new Date().toISOString(),
@@ -27,7 +27,7 @@ describe("dynamnoDbClient", () => {
       linksDatabase.push(expectedLink, {
         id: uuid(),
         userId: uuid(),
-        name: "second link",
+        title: "second link",
         link: "https://testing.com",
         linkType: "classic-link",
         createdDate: new Date().toISOString(),
@@ -46,7 +46,7 @@ describe("dynamnoDbClient", () => {
 
       const link: Link = {
         userId,
-        name: "testing",
+        title: "testing",
         link: "https://testing.com",
       } as Link;
 

@@ -1,12 +1,13 @@
 import { v4 as uuid } from "uuid";
-import { linksRouter } from ".";
-import createDataSources from "../../dataSources";
-import { agentFromRouter } from "../../../testing/server";
+import { linksRouter } from "..";
+import createDataSources from "../../../dataSources";
+import { agentFromRouter } from "../../../../testing/server";
 import { Response } from "supertest";
+import { PostLinkRequest } from "../../../types";
 
-jest.mock("../../dataSources");
+jest.mock("../../../dataSources");
 
-describe("postLinksHandler", () => {
+describe("postLinkHandler", () => {
   const agent = agentFromRouter(linksRouter);
   const mockPostLink = jest.fn();
 
@@ -18,7 +19,11 @@ describe("postLinksHandler", () => {
 
   describe("when request is valid", () => {
     const userId = uuid();
-    const body = { name: "testing", link: "https://testing.com" };
+    const body: PostLinkRequest = {
+      title: "testing",
+      link: "https://testing.com",
+      linkType: "classic-link",
+    };
 
     let result: Response;
 

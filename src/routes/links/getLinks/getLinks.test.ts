@@ -1,10 +1,10 @@
 import { v4 as uuid } from "uuid";
-import { linksRouter } from ".";
-import createDataSources from "../../dataSources";
-import { agentFromRouter } from "../../../testing/server";
+import { linksRouter } from "..";
+import createDataSources from "../../../dataSources";
+import { agentFromRouter } from "../../../../testing/server";
 import { Response } from "supertest";
 
-jest.mock("../../dataSources");
+jest.mock("../../../dataSources");
 
 describe("getLinksHandler", () => {
   const agent = agentFromRouter(linksRouter);

@@ -20,8 +20,13 @@ export interface Link {
   id: string;
   userId: string;
   linkType: LinkTypes;
-  name: string;
+  title: string;
   link: string;
   createdDate: string;
   updatedDate: string;
 }
+
+export type PostLinkRequest = Omit<
+  Link,
+  "id" | "userId" | "createdDate" | "updatedDate"
+>;

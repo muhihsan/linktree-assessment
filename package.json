@@ -20,6 +20,7 @@
   "homepage": "https://github.com/muhihsan/linktree-assessment#readme",
   "dependencies": {
     "@koa/router": "^10.1.1",
+    "jsonschema": "^1.4.0",
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",
     "nodemon": "^2.0.15",
