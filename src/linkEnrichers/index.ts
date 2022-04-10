@@ -2,6 +2,9 @@ import { DataSources, Link } from "../types";
 import createMusicLinkEnricher from "./musicLinkEnricher";
 import createShowLinkEnricher from "./showLinkEnricher";
 
+/**
+ * TODO: Add test 
+ */
 const createLinkEnricher = (dataSources: DataSources) => {
   const linkEnrichers = [
     createMusicLinkEnricher(dataSources),

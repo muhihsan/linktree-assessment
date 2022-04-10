@@ -8,6 +8,10 @@ import validateRequest from "./getLinksValidator";
 jest.mock("../../../dataSources");
 jest.mock("./getLinksValidator");
 
+/**
+ * TODO: Mock linkEnrichers
+ */
+
 describe("getLinksHandler", () => {
   const agent = agentFromRouter(linksRouter);
   const userId = uuid();
