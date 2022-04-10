@@ -32,7 +32,7 @@ Here is a quick rundown of what's in the [`/src`](./src/) directory
 
 **`app.ts`** is the starting point of the application
 
-**`config.ts`** is where all config will be stored, eg: environment, database name, etc
+**`config.ts`** is where all config will be stored, eg: environment, database name, log level, other API's endpoint, etc
 
 **`types.ts`** defines all types and interfaces used in the app
 
@@ -62,3 +62,4 @@ export interface LinkEnricher<L extends Link> {
 Almost all of potential improvements are added into the code files. Some others which can possibly be added as well
 - Add lint
 - Add integration tests
+- Add logging

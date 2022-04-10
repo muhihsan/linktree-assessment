@@ -7,3 +7,9 @@ const usersPath = "/users/:userId";
 export const linksRouter = new Router()
   .get(`${usersPath}/links`, getLinksHandler)
   .post(`${usersPath}/links`, postLinkHandler);
+
+/**
+ * TODO:
+ * - Add Health check endpoint
+ * - Add Smoke test endpoint
+ */
