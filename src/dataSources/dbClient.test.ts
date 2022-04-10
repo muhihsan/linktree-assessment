@@ -2,10 +2,11 @@ import { v4 as uuid } from "uuid";
 import { Link } from "../types";
 import { createDbClient, linksDatabase } from "./dbClient";
 
-describe("dynamnoDbClient", () => {
+describe("dbClient", () => {
   // TODO: create default test mock config to avoid usage of any
   const mockConfig = {} as any;
   const dbClient = createDbClient(mockConfig);
+  const userId = uuid();
 
   beforeEach(() => {
     linksDatabase.length = 0;
@@ -13,7 +14,6 @@ describe("dynamnoDbClient", () => {
 
   describe("getLinks", () => {
     it("should return links for user", async () => {
-      const userId = uuid();
       const expectedLink: Link = {
         id: uuid(),
         userId,
@@ -38,12 +38,60 @@ describe("dynamnoDbClient", () => {
 
       expect(results).toEqual([expectedLink]);
     });
+
+    describe("when ordering the links", () => {
+      linksDatabase.push(
+        {
+          id: uuid(),
+          userId,
+          title: "first link",
+          url: "https://testing.com",
+          type: "classic-link",
+          createdDate: new Date("2022-04-10T01:28:01.147Z").toISOString(),
+          updatedDate: new Date("2022-04-10T01:28:01.147Z").toISOString(),
+        },
+        {
+          id: uuid(),
+          userId,
+          title: "second link",
+          url: "https://testing.com",
+          type: "classic-link",
+          createdDate: new Date("2022-04-10T01:29:01.147Z").toISOString(),
+          updatedDate: new Date("2022-04-10T01:29:01.147Z").toISOString(),
+        }
+      );
+
+      describe("when orderByDirection is not passed", () => {
+        it("should default to desc (latest created date first)", async () => {
+          const results = await dbClient.getLinks(userId);
+
+          expect(results[0]).toEqual(linksDatabase[1]);
+          expect(results[1]).toEqual(linksDatabase[0]);
+        });
+      });
+
+      describe("when orderByDirection is desc", () => {
+        it("should return latest created date first", async () => {
+          const results = await dbClient.getLinks(userId);
+
+          expect(results[0]).toEqual(linksDatabase[1]);
+          expect(results[1]).toEqual(linksDatabase[0]);
+        });
+      });
+
+      describe("when orderByDirection is asc", () => {
+        it("should return latest created date first", async () => {
+          const results = await dbClient.getLinks(userId);
+
+          expect(results[1]).toEqual(linksDatabase[1]);
+          expect(results[0]).toEqual(linksDatabase[0]);
+        });
+      });
+    });
   });
 
   describe("postLink", () => {
     it("should return update link array", async () => {
-      const userId = uuid();
-
       const link: Link = {
         userId,
         title: "testing",

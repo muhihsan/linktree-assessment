@@ -1,7 +1,16 @@
-import { Validator } from "jsonschema";
 import { Context, Middleware } from "koa";
 import { PostLinkRequest, State } from "../../../types";
 import validateRequest from "./postLinkValidator";
+
+/**
+ * TODO: Provide idempotent endpoint
+ * To allow retry from the client without creating duplicate links
+ * 
+ * Example, by storing a unique request id created by the client in DB
+ * This allows for validation if record for the same request id has been created previously
+ * 
+ * If DynamoDB is used as data storage, ConditionExpression can be used to achieve it
+ */
 
 export const postLinkHandler: Middleware = async (ctx: Context) => {
   const {
