@@ -33,6 +33,13 @@ export interface Link {
   updatedDate: string;
 }
 
+export interface MusicLink extends Link {
+  options: Array<{
+    type: string;
+    url: string;
+  }>;
+}
+
 export type PostLinkRequest = Omit<
   Link,
   "id" | "userId" | "createdDate" | "updatedDate"
