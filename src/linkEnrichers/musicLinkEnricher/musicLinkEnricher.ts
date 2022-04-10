@@ -1,6 +1,9 @@
-import { DataSources, Link, LinkTypes, MusicLink } from "../types";
+import { LinkEnricher } from "../../types";
+import { DataSources, Link, LinkTypes, MusicLink } from "../../types";
 
-const createMusicLinkEnricher = (dataSources: DataSources) => {
+const createMusicLinkEnricher = (
+  dataSources: DataSources
+): LinkEnricher<MusicLink> => {
   return {
     test: (linkType: LinkTypes) => linkType === "music-style",
     enrich: (link: Link): MusicLink => {

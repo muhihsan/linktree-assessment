@@ -57,3 +57,8 @@ export type PostLinkRequest = Omit<
   Link,
   "id" | "userId" | "createdDate" | "updatedDate"
 >;
+
+export interface LinkEnricher<L extends Link> {
+  test: (linkType: LinkTypes) => boolean;
+  enrich: (link: Link) => L;
+}

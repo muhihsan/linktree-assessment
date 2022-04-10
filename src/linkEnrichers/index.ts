@@ -1,9 +1,9 @@
 import { DataSources, Link } from "../types";
-import createMusicLinkEnricher from "./musicLinkEnricher";
-import createShowLinkEnricher from "./showLinkEnricher";
+import createMusicLinkEnricher from "./musicLinkEnricher/musicLinkEnricher";
+import createShowLinkEnricher from "./showLinkEnricher/showLinkEnricher";
 
 /**
- * TODO: Add test 
+ * TODO: Add test
  */
 const createLinkEnricher = (dataSources: DataSources) => {
   const linkEnrichers = [

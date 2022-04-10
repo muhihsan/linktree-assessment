@@ -4,6 +4,10 @@ import compose from "koa-compose";
 import config from "../config";
 import createDataSources from "../dataSources";
 
+/**
+ * TODO: Move all midlewares to its own files
+ */
+
 const dataSourcesMiddleware = (ctx: Context, next: Next) => {
   ctx.state.dataSources = createDataSources(config);
   return next();
@@ -35,12 +39,25 @@ const requestLoggingMiddleware = (ctx: Context, next: Next) => {
   return next();
 };
 
+const errorHandlerMiddleware = (ctx: Context, next: Next) => {
+  /**
+   * TODO: Add error handler middleware
+   * This middleware can capture all errors ocurred on the app
+   * Some things that can be placed here
+   * - Logging all errors
+   * - Return standard error format
+   */
+
+  return next();
+};
+
 export const createApp = <State, Context>(
   ...middleware: Koa.Middleware<State, Context>[]
 ) =>
   new Koa()
     .use(bodyParser())
     .use(requestLoggingMiddleware)
+    .use(errorHandlerMiddleware)
     .use(dataSourcesMiddleware)
     .use(authMiddleware)
     .use(compose(middleware));
