@@ -28,6 +28,11 @@ const validateRequest = (request: PostLinkRequest) => {
    * - From a safe website
    */
 
+  /**
+   * TODO: Check if the link types match the URL specified
+   * If doesn't match, an error can be returned or the type can be modified
+   */
+
   return { error: null };
 };
 

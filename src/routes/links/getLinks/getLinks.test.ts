@@ -18,7 +18,7 @@ describe("getLinksHandler", () => {
     (createDataSources as jest.Mock).mockReturnValue({
       dbClient: { getLinks: mockGetLinks },
     });
-    mockGetLinks.mockResolvedValue({ link: "Awesome" });
+    mockGetLinks.mockResolvedValue([{ url: "Awesome" }]);
   });
 
   describe("when request is invalid", () => {
@@ -62,7 +62,7 @@ describe("getLinksHandler", () => {
     });
 
     it("should return links on body", async () => {
-      expect(result.body).toEqual({ link: "Awesome" });
+      expect(result.body).toEqual([{ url: "Awesome" }]);
     });
   });
 });
