@@ -8,6 +8,10 @@ import createDataSources from "../dataSources";
  * TODO: Move all midlewares to its own files
  */
 
+/**
+ * TODO: Add test
+ */
+
 const dataSourcesMiddleware = (ctx: Context, next: Next) => {
   ctx.state.dataSources = createDataSources(config);
   return next();

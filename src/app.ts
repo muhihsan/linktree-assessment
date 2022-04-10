@@ -1,6 +1,10 @@
 import { createApp } from "./framework/server";
 import { router } from "./routes";
 
+/**
+ * TODO: Add tests
+ */
+
 const app = createApp(router.allowedMethods(), router.routes());
 
 app.listen(8000, () => {
