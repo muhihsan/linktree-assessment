@@ -55,7 +55,14 @@ export interface LinkEnricher<L extends Link> {
 ```
 - Add logic on `test` function to define which link should be enrich from this new enricher
 - Add enricher logic to `enrich` function
-- Add the new enricher to [`index`](./src/linkEnrichers/index.ts) file
+- Import the new enricher to [`index`](./src/linkEnrichers/index.ts) file then add it to [`linkEnrichers`](./src/linkEnrichers/index.ts#L8) variable 
+```
+const linkEnrichers = [
+  createMusicLinkEnricher(dataSources),
+  createShowLinkEnricher(dataSources),
+  // Add new enricher here
+];
+```
 - With the current implementation, only the first enricher that returns `true` from its `test` function, will be used to enrich a link
 
 ## TODO or Potential Improvements
