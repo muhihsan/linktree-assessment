@@ -1,6 +1,12 @@
 # linktree-assessment
 ## Development
 
+### Requirement
+```shell
+node
+typescript
+```
+
 ### Install
 
 ```shell
@@ -16,7 +22,7 @@ npm run test
 ### Start
 
 ```shell
-# Start a local HTTP server
+# Start a local HTTP server at port 8000
 npm run start
 ```
 
