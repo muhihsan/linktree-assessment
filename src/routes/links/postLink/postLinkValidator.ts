@@ -20,6 +20,13 @@ const validateRequest = (request: PostLinkRequest) => {
     return { error: validatorResult.errors.join(", ") };
   }
 
+  /**
+   * TODO: Check if URL is valid
+   * - Doesn't contain scripts
+   * - URL exists (eg: Doesn't return 404 or site can be reached)
+   * - From a safe website
+   */
+
   return { error: null };
 };
 

@@ -6,18 +6,20 @@ export type DataSource = (config: Config) => {
   postLink: (link: PostLinkRequest & { userId: string }) => Promise<void>;
 };
 
+/**
+ * TODO: Store to actual Database
+ * For example: DynamoDB, etc
+ */
 export const linksDatabase: Link[] = [];
 
 export const createDbClient: DataSource = (config) => {
   return {
     getLinks: (userId: string) => {
-      // TODO: Get from actual Database
       return Promise.resolve(
         linksDatabase.filter((link) => link.userId === userId)
       );
     },
     postLink: async (link: PostLinkRequest & { userId: string }) => {
-      // TODO: store to actual Database
       linksDatabase.push({
         ...link,
         id: uuid(),

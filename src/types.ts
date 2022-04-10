@@ -1,5 +1,4 @@
 import { DataSource as DbClient } from "./dataSources/dbClient";
-import dataSources from "./dataSources";
 
 export interface Config {
   environment: string;

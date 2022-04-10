@@ -2,6 +2,8 @@ import Router from "@koa/router";
 import { getLinksHandler } from "./getLinks/getLinks";
 import { postLinkHandler } from "./postLink/postLink";
 
+const usersPath = "/users/:userId";
+
 export const linksRouter = new Router()
-  .get("/users/:userId/links", getLinksHandler)
-  .post("/users/:userId/links", postLinkHandler);
+  .get(`${usersPath}/links`, getLinksHandler)
+  .post(`${usersPath}/links`, postLinkHandler);
