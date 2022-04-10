@@ -1,3 +1,8 @@
+/**
+ * TODO: Re-organise this to group it based on the usage
+ * For example, move all links related to 1 file
+ */
+
 import { DataSource as DbClient } from "./dataSources/dbClient";
 
 export interface Config {
@@ -37,6 +42,14 @@ export interface MusicLink extends Link {
   options: Array<{
     type: string;
     url: string;
+  }>;
+}
+
+export interface ShowLink extends Link {
+  options: Array<{
+    status: "sold-out" | "coming-soon" | "open";
+    url: string;
+    eventDate: string;
   }>;
 }
 

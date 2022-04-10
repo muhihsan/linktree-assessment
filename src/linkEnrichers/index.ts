@@ -1,8 +1,12 @@
 import { DataSources, Link } from "../types";
 import createMusicLinkEnricher from "./musicLinkEnricher";
+import createShowLinkEnricher from "./showLinkEnricher";
 
 const createLinkEnricher = (dataSources: DataSources) => {
-  const linkEnrichers = [createMusicLinkEnricher(dataSources)];
+  const linkEnrichers = [
+    createMusicLinkEnricher(dataSources),
+    createShowLinkEnricher(dataSources),
+  ];
 
   return {
     enrich: (link: Link) => {
@@ -11,7 +15,7 @@ const createLinkEnricher = (dataSources: DataSources) => {
       );
 
       if (!linkEnricher) {
-        return { ...link };
+        return link;
       }
 
       return linkEnricher.enrich(link);
