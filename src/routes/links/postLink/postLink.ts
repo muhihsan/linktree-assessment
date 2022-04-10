@@ -8,6 +8,7 @@ export const postLinkHandler: Middleware = async (ctx: Context) => {
     dataSources: { dbClient },
   } = <State>ctx.state;
   const { userId } = ctx.params;
+
   const request = ctx.request.body as PostLinkRequest;
 
   const validationResult = validateRequest(request);

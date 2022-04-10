@@ -63,12 +63,43 @@ describe("postLinkValidator", () => {
     });
   });
 
+  describe("when unrecognise property found in the body", () => {
+    it("should return error", () => {
+      const request: any = {
+        title: "Test",
+        type: "classic-link",
+        url: "https://testing.com",
+        random: "test-random",
+      };
+
+      const result = validateRequest(request);
+
+      expect(result.error).toEqual(
+        'instance is not allowed to have the additional property "random"'
+      );
+    });
+  });
+
   describe("when all fields valid", () => {
     it("should return error null", () => {
       const request: PostLinkRequest = {
         title: "Test",
         type: "classic-link",
         url: "https://testing.com",
+      };
+
+      const result = validateRequest(request);
+
+      expect(result.error).toBeNull();
+    });
+  });
+
+  describe("when URL contains query string", () => {
+    it("should return error null", () => {
+      const request: PostLinkRequest = {
+        title: "Test",
+        type: "classic-link",
+        url: "https://testing.com?areyousure=true",
       };
 
       const result = validateRequest(request);

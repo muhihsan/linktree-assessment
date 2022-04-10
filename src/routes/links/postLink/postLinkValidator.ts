@@ -14,6 +14,7 @@ const validateRequest = (request: PostLinkRequest) => {
       },
     },
     required: ["title", "url", "type"],
+    additionalProperties: false,
   });
 
   if (!validatorResult.valid) {
