@@ -13,6 +13,9 @@ export interface State {
   dataSources: DataSources;
 }
 
+export const AcceptedOrderByDirections = ["asc", "desc"] as const;
+export type OrderByDirections = typeof AcceptedOrderByDirections[number];
+
 export const AcceptedLinkTypes = [
   "classic-link",
   "music-style",

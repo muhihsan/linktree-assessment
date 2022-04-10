@@ -12,6 +12,7 @@ jest.mock("./postLinkValidator");
 describe("postLinkHandler", () => {
   const agent = agentFromRouter(linksRouter);
   const userId = uuid();
+  
   const mockPostLink = jest.fn();
 
   beforeAll(() => {

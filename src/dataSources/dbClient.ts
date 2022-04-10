@@ -1,8 +1,11 @@
 import { v4 as uuid } from "uuid";
-import { Config, PostLinkRequest, Link } from "../types";
+import { Config, PostLinkRequest, Link, OrderByDirections } from "../types";
 
 export type DataSource = (config: Config) => {
-  getLinks: (userId: string, orderByDirection?: string) => Promise<Link[]>;
+  getLinks: (
+    userId: string,
+    orderByDirection?: OrderByDirections
+  ) => Promise<Link[]>;
   postLink: (link: PostLinkRequest & { userId: string }) => Promise<void>;
 };
 
@@ -17,7 +20,10 @@ export const createDbClient: DataSource = (config) => {
     /**
      * TODO: Pagination
      */
-    getLinks: (userId: string, orderByDirection: string = "desc") => {
+    getLinks: (
+      userId: string,
+      orderByDirection: OrderByDirections = "desc"
+    ) => {
       /**
        * If DynamoDB is used here
        * "createdDate" can be set as sortKey to do the sorting
